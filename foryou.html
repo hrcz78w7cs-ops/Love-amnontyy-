@@ -1,61 +1,296 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>For You ❤️</title>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            text-align:center;
-            background:#ffe6eb;
-            padding:50px;
-        }
-        h1{
-            color:#ff3366;
-        }
-        .card{
-            background:white;
-            padding:30px;
-            border-radius:20px;
-            max-width:700px;
-            margin:auto;
-            box-shadow:0 0 15px rgba(0,0,0,.1);
-        }
-        button{
-            background:#ff3366;
-            color:white;
-            border:none;
-            padding:12px 25px;
-            border-radius:10px;
-            cursor:pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Emy ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo', sans-serif;
+}
+
+body{
+background: radial-gradient(circle at top, #1b1b2f, #0f0f1a, #000);
+color:#fff;
+overflow-x:hidden;
+}
+
+/* نجوم */
+.stars, .stars2 {
+position:fixed;
+width:100%;
+height:100%;
+background:transparent;
+z-index:-1;
+}
+.stars::after, .stars2::after{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background:radial-gradient(white 1px, transparent 1px);
+background-size:50px 50px;
+animation: move 60s linear infinite;
+opacity:0.2;
+}
+.stars2::after{
+animation-duration:120s;
+opacity:0.1;
+}
+
+@keyframes move{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* شاشة البداية */
+.intro{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+.intro h1{
+font-size:55px;
+color:#ff4d6d;
+text-shadow:0 0 20px #ff4d6d;
+}
+
+.intro p{
+opacity:0.7;
+margin-top:10px;
+}
+
+.enter-btn{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.enter-btn:hover{
+transform:scale(1.1);
+background:#ff85a2;
+}
+
+/* المحتوى */
+.container{
+display:none;
+padding:40px 20px;
+text-align:center;
+}
+
+h1.type{
+font-size:40px;
+color:#ff4d6d;
+margin-bottom:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+padding:20px;
+margin:20px auto;
+border-radius:20px;
+max-width:700px;
+backdrop-filter:blur(10px);
+animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* قلوب */
+.heart{
+position:fixed;
+top:-10px;
+color:#ff4d6d;
+animation: fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* سلايدر */
+.slider{
+position:relative;
+width:100%;
+max-width:500px;
+margin:20px auto;
+overflow:hidden;
+border-radius:15px;
+}
+
+.slides{
+display:flex;
+transition:0.5s;
+}
+
+.slides img{
+width:100%;
+border-radius:15px;
+}
+
+/* رسالة سرية */
+.secret{
+display:none;
+margin-top:20px;
+padding:15px;
+background:rgba(255,255,255,0.08);
+border-radius:15px;
+}
+</style>
 </head>
+
 <body>
-    <div class="card">
-        <h1>❤️ For You ❤️</h1>
 
-        <p>
-        Yesterday my words may have sounded wrong,
-        but I never doubted you.
-        I trust you, I care about you,
-        and I only wanted to make sure you're okay.
-        </p>
+<div class="stars"></div>
+<div class="stars2"></div>
 
-        <p>
-        u are the best thing that ever happened to me.
-        ❤️
-        </p>
+<!-- INTRO -->
+<div class="intro" id="intro">
+<h1 id="typing"></h1>
+<p>اضغطي للدخول 💖</p>
+<button class="enter-btn" onclick="enter()">ادخلي</button>
+</div>
 
-        <button onclick="showLove()">Click Here ❤️</button>
+<!-- CONTENT -->
+<div class="container" id="content">
 
-        <p id="msg"></p>
-    </div>
+<h1 class="type">My Bnotti ❤️</h1>
 
-    <script>
-        function showLove(){
-            document.getElementById("msg").innerHTML =
-            "No matter what happens, my heart will always choose you ❤️";
-        }
-    </script>
+<div class="card">
+<h2>🎵 اسمعي دي ليكي</h2>
+<p>اسمعي دي لاحلى بنوته 🫀🎀</p>
+<button onclick="playMusic()">تشغيل</button>
+<audio id="audio">
+<source src="https://dn720309.ca.archive.org/0/items/amr-diab-m3-ak-alby/Amr%20Diab%20-%20Ma%20Ak%20Alby.mp3">
+</audio>
+</div>
+
+<div class="card">
+<h2>📸 ذكريات</h2>
+<div class="slider">
+<div class="slides" id="slides">
+<img src="https://i.imgur.com/8Km9tLL.jpg">
+<img src="https://i.imgur.com/1bX5QH6.jpg">
+<img src="https://i.imgur.com/3QK9Z4N.jpg">
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>💌 رسالة</h2>
+<p>
+وجودك فارق معايا…<br>
+وكل حاجة بينا ليها قيمة ❤️
+</p>
+</div>
+
+<div class="card">
+<h2>🔒 رسالة سرّية</h2>
+<input id="pass" placeholder="اكتب كلمة السر">
+<button onclick="check()">فتح</button>
+
+<div class="secret" id="secret">
+<p>
+أنا آسف على أي حاجة ضايقتك…<br>
+بس الحقيقة إنك أهم شخص في حياتي ❤️
+</p>
+</div>
+</div>
+
+<p>Made with ❤️ for Emy</p>
+</div>
+
+<script>
+
+/* دخول */
+function enter(){
+document.getElementById("intro").style.display="none";
+document.getElementById("content").style.display="block";
+}
+
+/* typing effect */
+let text="For Emy ❤️";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,150);
+}
+}
+type();
+
+/* موسيقى */
+function playMusic(){
+document.getElementById("audio").play();
+}
+
+/* قلوب */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},150);
+
+/* سلايدر */
+let index=0;
+setInterval(()=>{
+let slides=document.getElementById("slides");
+index++;
+if(index>2) index=0;
+slides.style.transform=`translateX(${-index*100}%)`;
+},3000);
+
+/* رسالة سرية */
+function check(){
+let val=document.getElementById("pass").value;
+if(val==="emy"){
+document.getElementById("secret").style.display="block";
+}
+}
+
+</script>
+
 </body>
 </html>
