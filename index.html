@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For You ❤️</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align:center;
+            background:#ffe6eb;
+            padding:50px;
+        }
+        h1{
+            color:#ff3366;
+        }
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            max-width:700px;
+            margin:auto;
+            box-shadow:0 0 15px rgba(0,0,0,.1);
+        }
+        button{
+            background:#ff3366;
+            color:white;
+            border:none;
+            padding:12px 25px;
+            border-radius:10px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>❤️ For You ❤️</h1>
+
+        <p>
+        Yesterday my words may have sounded wrong,
+        but I never doubted you.
+        I trust you, I care about you,
+        and I only wanted to make sure you're okay.
+        </p>
+
+        <p>
+        You are the best thing that ever happened to me.
+        ❤️
+        </p>
+
+        <button onclick="showLove()">Click Here ❤️</button>
+
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        function showLove(){
+            document.getElementById("msg").innerHTML =
+            "No matter what happens, my heart will always choose you ❤️";
+        }
+    </script>
+</body>
+</html>
